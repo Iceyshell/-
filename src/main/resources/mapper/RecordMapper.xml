@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanagi.mapper.RecordMapper">
+
+    <resultMap id="map" type="com.yanagi.entity.Record">
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="map">
+        select * from record
+    </select>
+
+    <!-- 添加权限数据 -->
+    <insert id="insert" parameterType="com.yanagi.entity.Record">
+        insert into record(type) values (#{type})
+    </insert>
+
+
+</mapper>

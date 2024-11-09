@@ -1,0 +1,66 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+
+spring:
+  application:
+    name: manage
+  datasource:
+    username: root
+    password: pai3.1415926
+    url: jdbc:mysql://localhost:3306/depart?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # redis 配置
+  redis:
+    # 配置主机
+    host: 127.0.0.1
+    # 配置使用的数据库
+    database: 0
+    # 配置端口
+    port: 6379
+  # 邮件配置
+  mail:
+    host: smtp.163.com
+    protocol: smtp
+    default-encoding: UTF-8
+    test-connection: true
+    username:
+    password:
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 开启驼峰
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.yanagi.entity
+
+jwt:
+  # 请求头
+  tokenHeader: x-access-token
+  # 签名加盐
+  secret: seirin1234
+  # 过期时间
+  expiration: 1800000
+  # token 头部
+  tokenHead: 'Bearer '
+
+
+# 配置七牛云 图片上传
+qiniu:
+  accessKey: 3-nj1lN36VK2NEQlsxaVcafsui-ZjVHtvQDve5dj
+  secretKey: fUvpf4L3j9lAdJdh76DNuecApQry_Fw_cDwt3XVc
+  bucket: yanagi-depart
+
+
+# 配置阿里云短信服务
+aliyun:
+  # ak
+  accessKey:
+  # sk
+  secretKey:
+  # 签名
+  signName: 管理平台
+  # 短信模板
+  templateCode: SMS_465911085

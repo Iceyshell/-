@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanagi.mapper.RenterMapper">
+
+
+    <!-- 分页模糊查询权限数据 -->
+    <select id="findPage" resultType="com.yanagi.entity.Renter" parameterType="com.yanagi.vo.RenterQueryVo">
+        select * from renter
+        <if test="name != null and name.length > 0 or phoneNumber != null and phoneNumber.length > 0 or status != null">
+            where
+            <if test="name != null and name.length > 0">
+                name like concat('%', #{name}, '%')
+            </if>
+            <if test="name != null and name.length > 0 and (phoneNumber != null and phoneNumber.length > 0 or status != null)">
+                and
+            </if>
+            <if test="phoneNumber != null and phoneNumber.length > 0">
+                phone_number like concat('%', #{phoneNumber}, '%')
+            </if>
+            <if test="phoneNumber != null and phoneNumber.length > 0 and status != null">
+                and
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </if>
+    </select>
+
+
+    <!-- 添加权限数据 -->
+    <insert id="insert" parameterType="com.yanagi.entity.Renter">
+        insert into renter(name, sex,phone_number ,email, avatar, idCard, status) values (#{name}, #{sex} ,#{phoneNumber}, #{email}, #{avatar}, #{idCard} ,#{status})
+    </insert>
+
+    <!-- 删除权限数据 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from renter where id = #{id}
+    </delete>
+
+    <!-- 修改权限数据 -->
+    <update id="update" parameterType="com.yanagi.entity.Renter">
+        update renter
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
