@@ -1,0 +1,31 @@
+运行步骤：
+1.打开java编辑器，如idea、eclipse等
+  通过拖拽或者上传的形式将java后端部分的代码在对应编辑器中打开，并自动开始下载依赖
+2.配置tomcat，运行.yml文件
+  部署tomcat后运行.yml文件连接数据库数据、redis等其他功能
+3.运行主.yml文件，启动后端服务器
+  运行主.yml文件后后端tomcat服务器将启动，此时可以在终端处看见对应的信息和提示，可在终端中进行用户管理的操作
+
+说明事项：
+(1)jtw、qiniu、aliyun、spring、mybatis等相关配置位于test中的application.yml内，使用者可以根据自己的需要设置不同的配置。
+(2)运行主.yml文件后需要在java/src/main/java/com.yanagi中找到JavaSportApplication进行运行，服务器方可正常执行
+(3).idea文件拥有全部的依赖和配置，如果不是自身特别需要的情况，请不要更改里面的内容和依赖，防止无法启动服务
+(4)pom.xml文件未进行上传，可能会导致编辑器打开java代码后报错、警告需要重新配置一下pom.xml以确保能够正常运行
+(5)由于只有后端代码，只能在终端中查看和进行操作可能会对项目造成一定的影响，为解决这个问题，使用者可以自行编写简略的前端vue
+
+代码结构：
+UserSystem一分为三个板块：
+  .idea————>>依赖和配置
+    ||complier.xml————>
+    ||encoding.xml————>
+    ||misc.xml————>
+  java————>>后端代码
+    ||pom.xml————>
+    ||src————>
+    ||target————>
+  vue————>>前端代码
+    ||.env————>
+    ||node_modules————>
+    ||public————>
+    ||build————>
+    ||.vscode————>
